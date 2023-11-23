@@ -26,11 +26,19 @@ class WebViewFragment : Fragment() {
         binding.webView.apply {
             // 아래 멤버는 실제로 setWebViewClient(WebViewClient client)이다
             // 자바는 위 메서드를 호출해 사용한다
-            webViewClient = WebViewClient()
+            webViewClient = WebtoonWebViewClient(binding.progressBar)
             // 웹뷰 내 자바스크립트 활성화
             settings.javaScriptEnabled = true
-            loadUrl("https://google.com")
+            loadUrl("https://comic.naver.com/webtoon/detail?titleId=650305&no=411&week=sat")
         }
-
     }
+
+    fun canGoBack(): Boolean{
+        return binding.webView.canGoBack()
+    }
+
+    fun goBack() {
+        binding.webView.goBack()
+    }
+
 }

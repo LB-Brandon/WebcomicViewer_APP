@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">WebtoonViewerApp</string>
+    <string name="back_to_last_scene">마지막 시점 돌아가기</string>
+    <string name="change_tap_name">탭 이름 바꾸기</string>
 </resources>
