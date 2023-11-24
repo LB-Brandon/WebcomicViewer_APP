@@ -9,9 +9,17 @@ import android.webkit.WebViewClient
 import android.widget.ProgressBar
 import androidx.core.view.isVisible
 
-class WebtoonWebViewClient(private val progressBar: ProgressBar) : WebViewClient() {
+class WebtoonWebViewClient(
+    private val progressBar: ProgressBar,
+    private val saveData: (String) -> Unit
+) : WebViewClient() {
 
+    // URL 로딩 직전 호출되는 함수
     override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean {
+        // webtoon page 이면 url 을 sharedPrefereneces 에 저장한다
+        if (request != null && request.url.toString().contains("comic.naver.com/webtoon/detail")) {
+            saveData.invoke(request.url.toString())
+        }
 
         // comic.naver.com 하위 url 이동만 가능
         return !(request != null && request.url.toString().contains("comic.naver.com/"))
