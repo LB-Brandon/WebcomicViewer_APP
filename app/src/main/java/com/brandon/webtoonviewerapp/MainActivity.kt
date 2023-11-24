@@ -1,10 +1,13 @@
 package com.brandon.webtoonviewerapp
 
+import android.graphics.Color
 import android.os.Bundle
-import android.webkit.WebView
-import android.webkit.WebViewClient
+import android.view.Gravity
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.brandon.webtoonviewerapp.databinding.ActivityMainBinding
+import com.google.android.material.tabs.TabLayoutMediator
+
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -13,24 +16,24 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val container = binding.flContainer
-        binding.btn1.setOnClickListener {
-            // Transaction 은 작업 단위. commit 으로 적용함
-            supportFragmentManager.beginTransaction().apply {
-                replace(R.id.fl_container, WebViewFragment())
-                commit()
+        binding.viewPager.adapter = ViewPagerAdapter(this)
+
+
+        TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
+            // TabConfigurationStrategy 함수형 인터페이스 구현
+            run {
+                val myCustomView = TextView(this)
+                myCustomView.text = "position $position"
+                myCustomView.gravity = Gravity.CENTER
+                myCustomView.setTextColor(Color.BLUE)
+                tab.customView = myCustomView
             }
-        }
-        binding.btn2.setOnClickListener {
-            supportFragmentManager.beginTransaction().apply {
-                replace(R.id.fl_container, BFragment())
-                commit()
-            }
-        }
+        }.attach()
+
     }
 
     override fun onBackPressed() {
-        val currentFragment = supportFragmentManager.fragments[0]
+        val currentFragment = supportFragmentManager.fragments[binding.viewPager.currentItem]
         if (currentFragment is WebViewFragment) {
             if (currentFragment.canGoBack()) {
                 currentFragment.goBack()
