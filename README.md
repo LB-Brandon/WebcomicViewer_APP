@@ -13,7 +13,7 @@ This app allows users to conveniently manage their favorite webtoon pages. The a
 - Can restore the latest viewed episode (using SharedPreferences).
 - Implements the `OnTabLayoutNameChanged` listener interface to detect tab name changes.
 
-## Code Highlights
+## Key functions
 
 ### `onBackPressed()`
 
