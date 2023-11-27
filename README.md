@@ -9,7 +9,7 @@ This app allows users to conveniently manage their favorite webtoon pages. The a
 ## Features
 
 - Utilizes ViewPager2 to compose N fragments.
-- Connects TabLayout and ViewPager2 with an adapter, allowing dynamic tab name changes.
+- Connects TabLayout and ViewPager2 with TabLayoutMediator, allowing dynamic tab name changes.
 - Can restore the latest viewed episode (using SharedPreferences).
 - Implements the `OnTabLayoutNameChanged` listener interface to detect tab name changes.
 
