@@ -1,4 +1,4 @@
-# Webtoon Viewer App
+# Webcomic Viewer App
 
 <img src="https://github.com/LB-Brandon/WebtoonViewer_App/assets/84883277/4c1df9a7-f63e-4215-a3e8-1eb113a50884" width="200" height="400"/>
 
